@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <title>Assessment Lockdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper green darken-3 z-depth-3">
+        <a href="#home" class="brand-logo"><i class="material-icons">link</i></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a data-scroll href="#home">Generator</a></li>
+          <li><a data-scroll href="#example">Example</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a data-scroll href="#home">Generator</a></li>
+    <li><a data-scroll href="#example">Example</a></li>
+  </ul>
+</head>
+
+<body>
+
+
+  <div class="main">
+    <div class="intro" id="home">
+      <div class="container">
+        <div class="card white center-align z-depth-3">
+          <div class="card-content black-text">
+            <h1>Link Generator</h1>
+            <br>
+            <div class="row">
+              <div class="col s12">
+                <p>Simply paste the link to your assessment below, then click the generate button. We'll copy it to your clipboard and you're all set!</p>
+                <div class="row">
+                  <input placeholder="Paste your link here" id="t_link" type="text" class="validate">
+                  <a class="waves-effect waves-light btn green darken-3" onclick="copyLink();note()"><i class="material-icons left">content_paste</i>Generate and Copy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="intro" id="not_home">
+      <div class="container">
+        <div class="card white center-align z-depth-3">
+          <div class="card-content black-text">
+            <h1>Examples</h1>
+            <p class="flow-text">Using MS Forms, copy the share link for the quiz:</p>
+            <div class="row">
+              <div class="col s12">
+                <img class="responsive-img" src="assets/form_share.gif" alt="">
+              </div>
+            </div>
+            <p class="flow-text">Paste the share link into the blank and then hit "Generate and Copy" to get your secure link!</p>
+            <div class="row">
+              <div class="col s12">
+                <img class="responsive-img" src="assets/link_gen.gif" alt="">
+              </div>
+            </div>
+            <div class="row">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="intro" id="home">
+
+    </div>
+  </div>
+
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.sidenav').sidenav();
+    });
+
+
+    $(document).ready(function() {
+      $('.fixed-action-btn').floatingActionButton();
+    });
+  </script>
+
+  <script type="text/javascript">
+    M.AutoInit();
+  </script>
+
+  <script type="text/javascript">
+    function copyLink() {
+      /* Get the text field */
+      var copyText = document.getElementById("t_link");
+
+      /* Select the text field */
+      copyText.select();
+
+      /* Copy the text inside the text field */
+      document.execCommand("Copy");
+
+      var prefix = 'ms-edu-secureassessment:';
+      var suffix = '!enforceLockdown';
+
+      var newLink = prefix + copyText.value + suffix;
+
+      var dummy = document.createElement('input');
+
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+
+      document.getElementById("dummy_id").value = newLink;
+
+      dummy.select();
+
+      document.execCommand("copy");
+
+      document.body.removeChild(dummy);
+
+      /* Alert the copied text */
+      console.log(newLink);
+    }
+  </script>
+
+  <script type="text/javascript">
+    function note() {
+      M.toast({
+        html: "Link copied to your clipboard!"
+      });
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</body>
+
+</html>
